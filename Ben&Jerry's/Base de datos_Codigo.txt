@@ -1,0 +1,40 @@
+BASE DE DATOS: heladeria
+
+Tabla 1: registro_usu
+Atributos:
+	id_usu int(3) not null auto_increment,
+	usuario varchar(15) not null,
+	nombre varchar(30) not null,
+	appe varchar(50) not null,
+	password varchar(15) not null,
+	dom varchar(100) not null,
+	edad int(2) not null,
+	telefono varchar(11) not null,
+	PRIMARY KEY(id_usu),
+	KEY(usuario),
+	KEY(nombre));
+
+Tabla 2: productos
+Atributos:
+	id_producto int(3) not null auto_increment,
+	nom_producto varchar(60) not null,
+	tipo_producto varchar(20) not null,
+	tamaño_producto varchar(20) not null,
+	gramos_producto int(10) not null,
+	precio_producto int(10) not null,
+	PRIMARY KEY(id_producto),
+	KEY(nom_producto));
+
+
+Tabla 3: promociones
+Atributos:
+	id_promocion int(3) not null auto_increment,
+	nombre_promocion varchar(30) not null,
+	mayoreo_promocion int(4) not null,
+	menudeo_promocion int(4) not null,
+	tipo_promocion varchar(30) not null,
+	PRIMARY KEY(id_promocion),
+	KEY(nombre_promocion),
+	KEY(tipo_promocion));
+
+			

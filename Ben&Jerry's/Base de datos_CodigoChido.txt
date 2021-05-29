@@ -1,0 +1,107 @@
+BASE DE DATOS: heladeria
+
+Tabla 1: registro_usu
+Atributos:
+	id_usu int(3) not null auto_increment,
+	usuario varchar(15) not null,
+	nombre varchar(30) not null,
+	appe varchar(50) not null,
+	password varchar(15) not null,
+	dom varchar(100) not null,
+	edad int(2) not null,
+	telefono int(11) not null,
+	PRIMARY KEY(id_usu),
+	KEY(usuario),
+	KEY(nombre));
+
+Tabla 2: Csaborhelado
+Atributos:
+	id_saborhelado int(3) not null auto_increment,
+	sabor_helado varchar(50) not null,
+	PRIMARY KEY(id_saborhelado),
+	KEY(sabor_helado));
+
+Tabla 3:Cpromocion
+	id_promocion int(3) not null auto_increment,
+	tipo_promocion varchar(20) not null,
+	PRIMARY KEY(id_promocion),
+	KEY(tipo_promocion));
+
+Tabla 4:Ccantidad
+	id_cantidad int(3) not null auto_increment,
+	valor_cantidad int(4) not null,
+	unidad_cantidad varchar(5) not null,
+	PRIMARY KEY(id_cantidad));
+
+
+Tabla 5:Ctamano
+	id_tamano int(3) not null auto_increment,
+	nombre_tamano varchar(30) not null auto_increment,
+	PRIMARY KEY(id_tamano),
+	KEY(nombre_tamano));
+
+
+Tabla 6:Cpresentacion
+	id_presentacion int(3) not null auto_increment,
+	tipo_presentacion varchar(10),
+	PRIMARY KEY(id_presentacion),
+	KEY(tipo_presentacion));
+
+
+Tabla 7:Mproducto
+	id_producto int(3) not null auto_increment,
+	id_sabor int(3) not null,
+	id_promocion int(3) not null,
+	id_cantidad int(3) not null,
+	id_tamano int(3) not null,
+	id_presentacion int(3) not null,
+	precio int(4) not null,
+	PRIMARY KEY(id_producto),
+	KEY(precio),
+	FOREIGN KEY(id_sabor) REFERENCES Csaborhelado(id_saborhelado),
+	FOREIGN KEY(id_promocion) REFERENCES Cpromocion(id_promocion),
+	FOREIGN KEY(id_cantidad) REFERENCES Ccantidad(id_cantidad),
+	FOREIGN KEY(id_tamano) REFERENCES Ctamano(id_tamano),
+	FOREIGN KEY(id_presentacion) REFERENCES Cpresentacion(id_presentacion));
+
+
+,sabor_helado, nombre_tamano
+
+select id_producto,sabor_helado,tipo_promocion,valor_cantidad, nombre_tamano,tipo_presentacion
+from Mproducto a, Csaborhelado b, Cpromocion c, Ccantidad d, Ctamano e, Cpresentacion f
+where( a.id_sabor=b.id_saborhelado) and
+     (a.id_promocion=c.tipo_promocion) and
+     (a.id_cantidad=d.valor_cantidad) and
+     (a.id_tamano=e.nombre_tamano) and
+     (a.id_presentacion= f.tipo_presentacion) and
+      a.id_sabor=3;
+
+
+select id_producto
+from Csaborhelado a, Mproducto b
+where( a.id_saborhelado=b.id_sabor) and
+ b.id_sabor=3;
+
+
+
+select id_producto,sabor_helado,nombre_tamano,tipo_presentacion,tipo_promocion,valor_cantidad
+from Csaborhelado a, Mproducto b, Ctamano c,Cpresentacion d, Cpromocion e, Ccantidad f
+where( a.id_saborhelado=b.id_sabor) and
+ (b.id_tamano=c.id_tamano) and
+ (b.id_presentacion=d.id_presentacion) and
+ b.id_producto=3;
+
+
+
+
+insert into Mproducto
+values(2,3,1,1,4,1,100);
+
+
+insert into Mproducto
+values(3,3,1,1,4,1,100);
+
+
+
+mysqldump 	
+			
